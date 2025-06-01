@@ -1,6 +1,6 @@
 # SSE Echo Server
 
-A lightweight C++ Server-Sent Events (SSE) echo server that accepts messages via query parameters and streams them back to connected clients. Perfect for testing SSE functionality and real-time web applications.
+A simple C++ Server-Sent Events (SSE) echo server that accepts messages via query parameters and streams them back to connected clients.
 
 
 ## Project Structure
