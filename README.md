@@ -2,24 +2,6 @@
 
 A simple C++ Server-Sent Events (SSE) echo server that accepts messages via query parameters and streams them back to connected clients.
 
-
-## Project Structure
-
-```
-sse-echo/
-├── CMakeLists.txt          # Build configuration
-├── README.md              # This file
-├── client.html            # Test HTML client
-├── .gitignore            # Git ignore rules
-└── sse-echo/             # Source code directory
-    ├── main.cpp          # Server entry point
-    ├── Utils.hpp         # Utility functions and request handling
-    ├── SocketGuard.hpp   # RAII socket wrapper (header)
-    ├── SocketGuard.cpp   # RAII socket wrapper (implementation)
-    ├── Exceptions.hpp    # Custom exception classes (header)
-    └── Exceptions.cpp    # Custom exception classes (implementation)
-```
-
 ## Building the Project
 
 ### 1. Create Build Directory
