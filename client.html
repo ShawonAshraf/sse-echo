@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SSE Echo Client</title>
+</head>
+<body>
+    <h1>SSE Echo Test</h1>
+    <input type="text" id="messageInput" value="Hello SSE World!">
+    <button onclick="startSSE()">Connect SSE</button>
+    <h2>Server Messages:</h2>
+    <ul id="messages"></ul>
+
+    <script>
+        let eventSource;
+
+        function startSSE() {
+            const message = document.getElementById('messageInput').value;
+            const messagesList = document.getElementById('messages');
+            messagesList.innerHTML = ''; // Clear previous messages
+
+            // Construct the URL with the message as a query parameter
+            const url = `http://localhost:8080/events?message=${encodeURIComponent(message)}`;
+            console.log(`Connecting to: ${url}`);
+
+            if (eventSource) {
+                eventSource.close();
+            }
+
+            eventSource = new EventSource(url);
+
+            eventSource.onopen = function() {
+                const li = document.createElement('li');
+                li.textContent = 'Connection opened.';
+                messagesList.appendChild(li);
+                console.log("SSE Connection opened.");
+            };
+
+            // You can listen for named events if you specified one (e.g., 'messageEcho')
+            eventSource.addEventListener('messageEcho', function(event) {
+                const li = document.createElement('li');
+                li.textContent = `Named event (messageEcho) received: ${event.data}`;
+                messagesList.appendChild(li);
+                console.log("Named event 'messageEcho':", event);
+            });
+
+            // Generic message handler (if no event name is specified or for default messages)
+            eventSource.onmessage = function(event) {
+                // This might also catch the named event if not specifically handled above,
+                // or if the server sends data lines without an "event:" prefix.
+                // Our server sends "event: messageEcho", so the specific listener is better.
+                const li = document.createElement('li');
+                li.textContent = `Generic message received: ${event.data}`;
+                messagesList.appendChild(li);
+                console.log("Generic SSE Message:", event);
+            };
+
+            eventSource.onerror = function(err) {
+                const li = document.createElement('li');
+                li.textContent = 'Error or connection closed.';
+                messagesList.appendChild(li);
+                console.error("EventSource failed:", err);
+                eventSource.close(); // Close it on error
+            };
+        }
+    </script>
+</body>
+</html>
