@@ -37,8 +37,10 @@ int main() {
         SocketGuard server_socket_guard(server_fd_raw); // Manages server_fd_raw from now on
 
         int opt = 1;
-        if (setsockopt(server_socket_guard.get(), SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt))) {
-            throw SocketException("setsockopt failed: " + std::string(strerror(errno)));
+        // Use only SO_REUSEADDR for broader compatibility
+        if (setsockopt(server_socket_guard.get(), SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt))) {
+            // It's still good to check for errors with SO_REUSEADDR, though it's more commonly available.
+            throw SocketException("setsockopt SO_REUSEADDR failed: " + std::string(strerror(errno)));
         }
 
         struct sockaddr_in address;
