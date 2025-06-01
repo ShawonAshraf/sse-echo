@@ -147,15 +147,14 @@ python3 -m http.server 3000
 2. Click "Connect SSE"
 3. Watch real-time messages appear
 
-## License
-
-This project is provided as-is for educational and development purposes.
-
-
-### Debug Mode
+### 4. Debug Mode
 
 For detailed debugging, build in debug mode:
 ```bash
 cmake -DCMAKE_BUILD_TYPE=Debug ..
 cmake --build .
 ```
+
+## License
+
+This project is provided as-is for educational and development purposes.
