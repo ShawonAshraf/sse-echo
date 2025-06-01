@@ -8,6 +8,12 @@
 #ifndef Utils_h
 #define Utils_h
 
+#include <iostream>
+#include <string>
+#include <vector>
+#include <sstream>
+#include <thread>
+
 // For POSIX sockets
 #include <sys/socket.h>
 #include <netinet/in.h>
