@@ -130,24 +130,10 @@ The project includes a test HTML client (`client.html`) for easy testing:
 ```
 
 ### 2. Open the HTML Client
-Open `client.html` in your web browser, or serve it via a local web server:
+Open `client.html` in your web browser, or serve it via a local web server.
 
-```bash
-# Option 1: Direct file open
-open client.html  # macOS
-xdg-open client.html  # Linux
 
-# Option 2: Simple HTTP server
-python3 -m http.server 3000
-# Then visit: http://localhost:3000/client.html
-```
-
-### 3. Test the Connection
-1. Enter a message in the input field
-2. Click "Connect SSE"
-3. Watch real-time messages appear
-
-### 4. Debug Mode
+### 3. Debug Mode
 
 For detailed debugging, build in debug mode:
 ```bash
@@ -156,5 +142,4 @@ cmake --build .
 ```
 
 ## License
-
 This project is provided as-is for educational and development purposes.
