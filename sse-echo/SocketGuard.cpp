@@ -6,14 +6,14 @@
 //
 
 #include "SocketGuard.hpp"
+#include "Exceptions.hpp"
 
 SocketGuard::SocketGuard(int fd) : _fd(fd) {
     if (_fd < 0) { // If an invalid FD is passed (e.g. from a failed socket() call)
         // This guard should ideally only be constructed with a valid FD.
         // The caller should check for fd < 0 before constructing.
         // However, as a safeguard:
-        // throw SocketException("SocketGuard constructed with invalid file descriptor: " + std::to_string(fd));
-        // For this example, we'll assume it's created after a successful fd acquisition.
+        throw SocketException("SocketGuard constructed with invalid file descriptor: " + std::to_string(fd));
     }
 }
 
